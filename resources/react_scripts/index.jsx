@@ -1,12 +1,20 @@
-( () => {
+(() => {
 	class Header extends React.Component {
 		render() {
-			return <header className="header"></header>
+			const
+				uiTest = /Trident/i,
+				_class  = uiTest.test(navigator.userAgent) ? ' _ie': ''
+
+			return <header className={`header${ _class }`}></header>
 		}
 	}
 
 	function EmptyField () {
 		return <div className="empty-field"></div>
+	}
+
+	function Root(options) {
+		return <div className="root">{options.children}</div>
 	}
 
 	class MainContent extends React.Component {
@@ -29,11 +37,11 @@
 
 	window.onload = () => {
 		ReactDOM.render(
-			<div>
+			<Root>
 				<Header/>
 				<EmptyField/>
-				<MainContent />
-			</div>,
+				<MainContent/>
+			</Root>,
 			document.querySelector('#react-entry'))
 	}
 })()

@@ -38,8 +38,6 @@ gulp.task('scripts', setEnv(mode, function () {
 			[
 				`react/react${this}.js`,
 				`react/react-dom${this}.js`,
-				`jquery/dist/jquery${this}.js`,
-				`slider-pro/dist/js/jquery.sliderPro${this}.js`
 			].map(makePath('bower_components/')),
 			[
 				'global_scripts/**/*.js'
@@ -53,6 +51,7 @@ gulp.task('scripts', setEnv(mode, function () {
 		.pipe(concat('app.js'))
 		.pipe(gulp.dest(scriptsDst))
 }))
+
 
 gulp.task('react_scripts', () => {
 	const scriptsDst = 'public/react_scripts'
@@ -68,6 +67,7 @@ gulp.task('react_scripts', () => {
 		.pipe(gulp.dest(scriptsDst))
 })
 
+
 gulp.task('stylus', () => {
 	const cssDst = 'public/styles'
 	return gulp.src('resources/stylus/style.styl')
@@ -82,20 +82,24 @@ gulp.task('stylus', () => {
 		.pipe(gulp.dest(cssDst))
 })
 
+
 gulp.task('replace_html', () => {
 	return gulp.src('resources/pages/*')
 		.pipe(gulp.dest('public/pages'))
 })
+
 
 gulp.task('replace_images', () => {
 	return gulp.src('resources/images/*')
 		.pipe(gulp.dest('public/images'))
 })
 
+
 gulp.task('replace_fonts', () => {
 	gulp.src('resources/fonts/**/*')
 	.pipe(gulp.dest('public/fonts'))
 })
+
 
 gulp.task('default', [
 	'scripts',
